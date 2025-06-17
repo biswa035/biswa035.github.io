@@ -1,88 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Learn Python & LangChain Basics</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background: #f5f5f5;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-        }
-        .button-group {
-            margin: 30px 0;
-        }
-        button {
-            padding: 15px 30px;
-            margin: 10px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            background: #4f8cff;
-            color: white;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        button:hover {
-            background: #357ae8;
-        }
-        .content {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            margin: 0 auto;
-            max-width: 600px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            display: none;
-            text-align: left;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Learning Hub: Python & LangChain</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts for typography -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f5f8fa;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .hero-section {
+      padding: 60px 0 30px 0;
+      background: linear-gradient(90deg, #4f8cff 0%, #5eead4 100%);
+      color: #fff;
+      text-align: center;
+    }
+    .hero-section h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+    }
+    .hero-section p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+    }
+    .author {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #f3f3f3;
+      letter-spacing: 0.5px;
+    }
+    .btn-custom {
+      min-width: 220px;
+      font-size: 1.2rem;
+      margin: 10px;
+      padding: 15px 30px;
+      border-radius: 30px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-python {
+      background: #357ae8;
+      color: #fff;
+    }
+    .btn-python:hover {
+      background: #2851a3;
+      color: #fff;
+    }
+    .btn-langchain {
+      background: #14b8a6;
+      color: #fff;
+    }
+    .btn-langchain:hover {
+      background: #0e8070;
+      color: #fff;
+    }
+    .content-section {
+      display: none;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      padding: 40px 30px 30px 30px;
+      margin: 40px auto 0 auto;
+      max-width: 700px;
+    }
+    .content-section h2 {
+      color: #357ae8;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .content-section ul {
+      font-size: 1.1rem;
+    }
+    .content-section pre {
+      background: #f3f3f3;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .footer {
+      margin-top: 60px;
+      padding: 20px 0;
+      background: #222;
+      color: #bbb;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+    .footer .author-footer {
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 600px) {
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+      .content-section {
+        padding: 20px 8px 18px 8px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to Learning Hub!</h1>
-    <div class="button-group">
-        <button onclick="showContent('python')">Learn Python Basics</button>
-        <button onclick="showContent('langchain')">Learn LangChain Basics</button>
-    </div>
-    <div id="python" class="content">
-        <h2>Python Basics</h2>
-        <ul>
-            <li><b>What is Python?</b> A popular, easy-to-learn programming language.</li>
-            <li><b>Variables:</b> <code>x = 5</code></li>
-            <li><b>Print:</b> <code>print("Hello, World!")</code></li>
-            <li><b>Functions:</b> <code>def greet(name): print("Hello", name)</code></li>
-            <li><b>Lists:</b> <code>fruits = ["apple", "banana", "cherry"]</code></li>
-            <li><b>Loops:</b> <code>for fruit in fruits: print(fruit)</code></li>
-            <li><b>More:</b> <a href="https://docs.python.org/3/tutorial/" target="_blank">Official Python Tutorial</a></li>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="fa-solid fa-graduation-cap"></i> Learning Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showContent('python')">Python</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showContent('langchain')">LangChain</a></li>
         </ul>
+      </div>
     </div>
-    <div id="langchain" class="content">
-        <h2>LangChain Basics</h2>
-        <ul>
-            <li><b>What is LangChain?</b> A Python framework for building applications with Large Language Models (LLMs) like GPT.</li>
-            <li><b>Install:</b> <code>pip install langchain</code></li>
-            <li><b>Simple Example:</b>
-                <pre>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="author">Author: Biswa Ranjan</div>
+      <h1>Welcome to the Learning Hub!</h1>
+      <p>Click a button below to start learning about Python or LangChain basics.</p>
+      <button class="btn btn-custom btn-python" onclick="showContent('python')">
+        <i class="fa-brands fa-python"></i> Learn Python Basics
+      </button>
+      <button class="btn btn-custom btn-langchain" onclick="showContent('langchain')">
+        <i class="fa-solid fa-cubes"></i> Learn LangChain Basics
+      </button>
+    </div>
+  </section>
+
+  <!-- Python Content Section -->
+  <div id="python" class="content-section">
+    <h2><i class="fa-brands fa-python"></i> Python Basics</h2>
+    <ul>
+      <li><b>What is Python?</b> A popular, easy-to-learn programming language used for web, data science, automation, and more.</li>
+      <li><b>Variables:</b> <code>x = 5</code></li>
+      <li><b>Print:</b> <code>print("Hello, World!")</code></li>
+      <li><b>Functions:</b> <code>def greet(name): print("Hello", name)</code></li>
+      <li><b>Lists:</b> <code>fruits = ["apple", "banana", "cherry"]</code></li>
+      <li><b>Loops:</b> <code>for fruit in fruits: print(fruit)</code></li>
+      <li><b>More:</b> <a href="https://docs.python.org/3/tutorial/" target="_blank">Official Python Tutorial</a></li>
+    </ul>
+    <h4>Sample Python Program:</h4>
+    <pre>
+def greet(name):
+    print(f"Hello, {name}!")
+
+greet("World")
+    </pre>
+  </div>
+
+  <!-- LangChain Content Section -->
+  <div id="langchain" class="content-section">
+    <h2><i class="fa-solid fa-cubes"></i> LangChain Basics</h2>
+    <ul>
+      <li><b>What is LangChain?</b> A Python framework for building applications with Large Language Models (LLMs) like GPT.</li>
+      <li><b>Install:</b> <code>pip install langchain</code></li>
+      <li><b>Simple Example:</b>
+        <pre>
 from langchain.llms import OpenAI
 llm = OpenAI()
 response = llm("What is LangChain?")
 print(response)
-                </pre>
-            </li>
-            <li><b>Use Cases:</b> Chatbots, document Q&A, code assistants, and more.</li>
-            <li><b>Docs:</b> <a href="https://python.langchain.com/docs/get_started/introduction.html" target="_blank">LangChain Documentation</a></li>
-        </ul>
-    </div>
-    <script>
-        function showContent(topic) {
-            document.getElementById('python').style.display = 'none';
-            document.getElementById('langchain').style.display = 'none';
-            document.getElementById(topic).style.display = 'block';
-        }
-    </script>
+        </pre>
+      </li>
+      <li><b>Use Cases:</b> Chatbots, document Q&A, code assistants, and more.</li>
+      <li><b>Docs:</b> <a href="https://python.langchain.com/docs/get_started/introduction.html" target="_blank">LangChain Documentation</a></li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="author-footer">Author: Biswa Ranjan</div>
+    &copy; 2024 Learning Hub. Made with <i class="fa-solid fa-heart" style="color:#e25555"></i> | <a href="https://github.com/" target="_blank" style="color:#bbb;">GitHub</a>
+  </footer>
+
+  <!-- Bootstrap JS (for navbar toggle on mobile) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Show content section and hide others
+    function showContent(topic) {
+      document.getElementById('python').style.display = 'none';
+      document.getElementById('langchain').style.display = 'none';
+      document.getElementById(topic).style.display = 'block';
+      // Scroll to content on mobile
+      document.getElementById(topic).scrollIntoView({behavior: "smooth"});
+    }
+  </script>
 </body>
 </html>
