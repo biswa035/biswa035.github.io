@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learn Python & LangChain Basics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f5f5f5;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .button-group {
+            margin: 30px 0;
+        }
+        button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background: #4f8cff;
+            color: white;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #357ae8;
+        }
+        .content {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 0 auto;
+            max-width: 600px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            display: none;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Learning Hub!</h1>
+    <div class="button-group">
+        <button onclick="showContent('python')">Learn Python Basics</button>
+        <button onclick="showContent('langchain')">Learn LangChain Basics</button>
+    </div>
+    <div id="python" class="content">
+        <h2>Python Basics</h2>
+        <ul>
+            <li><b>What is Python?</b> A popular, easy-to-learn programming language.</li>
+            <li><b>Variables:</b> <code>x = 5</code></li>
+            <li><b>Print:</b> <code>print("Hello, World!")</code></li>
+            <li><b>Functions:</b> <code>def greet(name): print("Hello", name)</code></li>
+            <li><b>Lists:</b> <code>fruits = ["apple", "banana", "cherry"]</code></li>
+            <li><b>Loops:</b> <code>for fruit in fruits: print(fruit)</code></li>
+            <li><b>More:</b> <a href="https://docs.python.org/3/tutorial/" target="_blank">Official Python Tutorial</a></li>
+        </ul>
+    </div>
+    <div id="langchain" class="content">
+        <h2>LangChain Basics</h2>
+        <ul>
+            <li><b>What is LangChain?</b> A Python framework for building applications with Large Language Models (LLMs) like GPT.</li>
+            <li><b>Install:</b> <code>pip install langchain</code></li>
+            <li><b>Simple Example:</b>
+                <pre>
+from langchain.llms import OpenAI
+llm = OpenAI()
+response = llm("What is LangChain?")
+print(response)
+                </pre>
+            </li>
+            <li><b>Use Cases:</b> Chatbots, document Q&A, code assistants, and more.</li>
+            <li><b>Docs:</b> <a href="https://python.langchain.com/docs/get_started/introduction.html" target="_blank">LangChain Documentation</a></li>
+        </ul>
+    </div>
+    <script>
+        function showContent(topic) {
+            document.getElementById('python').style.display = 'none';
+            document.getElementById('langchain').style.display = 'none';
+            document.getElementById(topic).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
