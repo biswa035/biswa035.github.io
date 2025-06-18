@@ -100,12 +100,35 @@
       font-weight: 600;
       letter-spacing: 0.5px;
     }
+    /* Topic button styles */
+    .topic-btn-group .btn {
+      min-width: 130px;
+      font-size: 1rem;
+      margin: 6px;
+      border-radius: 20px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .py-topic, .lc-topic {
+      display: none;
+      margin-top: 20px;
+      animation: fadeIn 0.5s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
     @media (max-width: 600px) {
       .hero-section h1 {
         font-size: 2rem;
       }
       .content-section {
         padding: 20px 8px 18px 8px;
+      }
+      .topic-btn-group .btn {
+        min-width: 90px;
+        font-size: 0.95rem;
+        padding: 8px 10px;
       }
     }
   </style>
@@ -145,41 +168,98 @@
   <!-- Python Content Section -->
   <div id="python" class="content-section">
     <h2><i class="fa-brands fa-python"></i> Python Basics</h2>
-    <ul>
-      <li><b>What is Python?</b> A popular, easy-to-learn programming language used for web, data science, automation, and more.</li>
-      <li><b>Variables:</b> <code>x = 5</code></li>
-      <li><b>Print:</b> <code>print("Hello, World!")</code></li>
-      <li><b>Functions:</b> <code>def greet(name): print("Hello", name)</code></li>
-      <li><b>Lists:</b> <code>fruits = ["apple", "banana", "cherry"]</code></li>
-      <li><b>Loops:</b> <code>for fruit in fruits: print(fruit)</code></li>
-      <li><b>More:</b> <a href="https://docs.python.org/3/tutorial/" target="_blank">Official Python Tutorial</a></li>
-    </ul>
-    <h4>Sample Python Program:</h4>
-    <pre>
-def greet(name):
-    print(f"Hello, {name}!")
+    <div class="topic-btn-group d-flex flex-wrap justify-content-center mb-4">
+      <button class="btn btn-outline-primary" onclick="showPythonTopic('py-variables')">Variables</button>
+      <button class="btn btn-outline-primary" onclick="showPythonTopic('py-functions')">Functions</button>
+      <button class="btn btn-outline-primary" onclick="showPythonTopic('py-loops')">Loops</button>
+      <button class="btn btn-outline-primary" onclick="showPythonTopic('py-lists')">Lists</button>
+      <button class="btn btn-outline-primary" onclick="showPythonTopic('py-resources')">Resources</button>
+    </div>
+    <div id="py-variables" class="py-topic">
+      <h4>Variables</h4>
+      <p>Variables store data values. In Python, you don't need to declare the type:</p>
+      <pre><code>x = 5
+name = "Alice"
+pi = 3.14
+print(x, name, pi)
+      </code></pre>
+    </div>
+    <div id="py-functions" class="py-topic">
+      <h4>Functions</h4>
+      <p>Functions are blocks of code that run when called:</p>
+      <pre><code>def greet(name):
+    print("Hello,", name)
 
-greet("World")
-    </pre>
+greet("Biswa")
+      </code></pre>
+    </div>
+    <div id="py-loops" class="py-topic">
+      <h4>Loops</h4>
+      <p>Loops let you repeat code. Example with a <b>for</b> loop:</p>
+      <pre><code>fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+      </code></pre>
+    </div>
+    <div id="py-lists" class="py-topic">
+      <h4>Lists</h4>
+      <p>Lists store multiple items in one variable:</p>
+      <pre><code>numbers = [1, 2, 3, 4]
+print(numbers[2])  # Output: 3
+      </code></pre>
+    </div>
+    <div id="py-resources" class="py-topic">
+      <h4>More Resources</h4>
+      <ul>
+        <li><a href="https://docs.python.org/3/tutorial/" target="_blank">Official Python Tutorial</a></li>
+        <li><a href="https://www.w3schools.com/python/" target="_blank">W3Schools Python</a></li>
+        <li><a href="https://realpython.com/" target="_blank">Real Python</a></li>
+      </ul>
+    </div>
   </div>
 
   <!-- LangChain Content Section -->
   <div id="langchain" class="content-section">
     <h2><i class="fa-solid fa-cubes"></i> LangChain Basics</h2>
-    <ul>
-      <li><b>What is LangChain?</b> A Python framework for building applications with Large Language Models (LLMs) like GPT.</li>
-      <li><b>Install:</b> <code>pip install langchain</code></li>
-      <li><b>Simple Example:</b>
-        <pre>
-from langchain.llms import OpenAI
+    <div class="topic-btn-group d-flex flex-wrap justify-content-center mb-4">
+      <button class="btn btn-outline-success" onclick="showLangchainTopic('lc-intro')">Introduction</button>
+      <button class="btn btn-outline-success" onclick="showLangchainTopic('lc-install')">Installation</button>
+      <button class="btn btn-outline-success" onclick="showLangchainTopic('lc-example')">Example</button>
+      <button class="btn btn-outline-success" onclick="showLangchainTopic('lc-usecases')">Use Cases</button>
+      <button class="btn btn-outline-success" onclick="showLangchainTopic('lc-resources')">Resources</button>
+    </div>
+    <div id="lc-intro" class="lc-topic">
+      <h4>Introduction</h4>
+      <p>LangChain is a Python framework for building applications powered by Large Language Models (LLMs) like GPT.</p>
+    </div>
+    <div id="lc-install" class="lc-topic">
+      <h4>Installation</h4>
+      <pre><code>pip install langchain</code></pre>
+    </div>
+    <div id="lc-example" class="lc-topic">
+      <h4>Simple Example</h4>
+      <pre><code>from langchain.llms import OpenAI
 llm = OpenAI()
 response = llm("What is LangChain?")
 print(response)
-        </pre>
-      </li>
-      <li><b>Use Cases:</b> Chatbots, document Q&A, code assistants, and more.</li>
-      <li><b>Docs:</b> <a href="https://python.langchain.com/docs/get_started/introduction.html" target="_blank">LangChain Documentation</a></li>
-    </ul>
+      </code></pre>
+    </div>
+    <div id="lc-usecases" class="lc-topic">
+      <h4>Use Cases</h4>
+      <ul>
+        <li>Chatbots</li>
+        <li>Document Q&amp;A</li>
+        <li>Code assistants</li>
+        <li>Knowledge base search</li>
+      </ul>
+    </div>
+    <div id="lc-resources" class="lc-topic">
+      <h4>More Resources</h4>
+      <ul>
+        <li><a href="https://python.langchain.com/docs/get_started/introduction.html" target="_blank">LangChain Documentation</a></li>
+        <li><a href="https://github.com/langchain-ai/langchain" target="_blank">LangChain GitHub</a></li>
+      </ul>
+    </div>
   </div>
 
   <!-- Footer -->
@@ -196,9 +276,25 @@ print(response)
       document.getElementById('python').style.display = 'none';
       document.getElementById('langchain').style.display = 'none';
       document.getElementById(topic).style.display = 'block';
-      // Scroll to content on mobile
+      // Show default topic for each section
+      if(topic === 'python') showPythonTopic('py-variables');
+      if(topic === 'langchain') showLangchainTopic('lc-intro');
       document.getElementById(topic).scrollIntoView({behavior: "smooth"});
     }
+    // Hide all Python topics, then show the selected one
+    function showPythonTopic(topicId) {
+      document.querySelectorAll('.py-topic').forEach(el => el.style.display = 'none');
+      document.getElementById(topicId).style.display = 'block';
+    }
+    // Hide all LangChain topics, then show the selected one
+    function showLangchainTopic(topicId) {
+      document.querySelectorAll('.lc-topic').forEach(el => el.style.display = 'none');
+      document.getElementById(topicId).style.display = 'block';
+    }
+    // Show Python section and default topic on page load
+    window.onload = function() {
+      showContent('python');
+    };
   </script>
 </body>
 </html>
